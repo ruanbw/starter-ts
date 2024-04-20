@@ -21,7 +21,7 @@ _description_
 
 ## License
 
-[MIT](./LICENSE) License © 2023-PRESENT [Anthony Fu](https://github.com/ruanbw)
+[MIT](./LICENSE) License © 2024-PRESENT [ruanbw](https://github.com/ruanbw)
 
 <!-- Badges -->
 
