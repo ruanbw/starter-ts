@@ -1,0 +1,59 @@
+{
+  "name": "pkg-placeholder", // 项目名称
+  "type": "module", // 模块类型
+  "version": "0.0.0", // 项目版本
+  "packageManager": "pnpm@9.0.2", // 使用的包管理器及版本
+  "description": "_description_", // 项目描述
+  "author": "Anthony Fu <anthonyfu117@hotmail.com>", // 作者信息
+  "license": "MIT", // 许可证
+  "funding": "https://github.com/sponsors/antfu", // 资助链接
+  "homepage": "https://github.com/antfu/pkg-placeholder#readme", // 项目主页
+  "repository": { // 仓库信息
+    "type": "git",
+    "url": "git+https://github.com/antfu/pkg-placeholder.git"
+  },
+  "bugs": "https://github.com/antfu/pkg-placeholder/issues", // 报告问题的链接
+  "keywords": [], // 项目关键词
+  "sideEffects": false, // 是否有副作用
+  "exports": { // 导出配置
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.mjs", // 主入口文件
+  "module": "./dist/index.mjs", // 模块入口文件
+  "types": "./dist/index.d.ts", // 类型声明文件
+  "typesVersions": { // 类型版本
+    "*": {
+      "*": [
+        "./dist/*",
+        "./dist/index.d.ts"
+      ]
+    }
+  },
+  "files": [ // 发布的文件
+    "dist"
+  ],
+  "scripts": { // 脚本命令
+    "build": "unbuild",
+    "dev": "unbuild --stub",
+    "lint": "eslint .",
+    "prepublishOnly": "nr build",
+    "release": "bumpp && npm publish",
+    "start": "esno src/index.ts",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "prepare": "simple-git-hooks"
+  },
+  "devDependencies": { // 开发依赖
+    // 依赖列表...
+  },
+  "simple-git-hooks": { // 简单的 Git 钩子配置
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": { // lint-staged 配置
+    "*": "eslint --fix"
+  }
+}

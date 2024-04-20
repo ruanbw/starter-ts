@@ -1,0 +1,28 @@
+name: Release # 工作流名称为 Release
+
+permissions: # 设置权限
+  contents: write # 允许对内容进行写操作
+
+on:
+  push: # 当有代码推送时触发
+    tags: # 仅在推送 tag 时触发
+      - 'v*' # 匹配以 'v' 开头的 tag
+
+jobs:
+  release: # release 任务
+    runs-on: ubuntu-latest # 在 Ubuntu 最新版上运行
+
+    steps:
+      - uses: actions/checkout@v3 # 检出代码，并设置 fetch-depth 为 0，以确保获取完整的历史记录
+
+      - name: Install pnpm # 安装 pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Set node # 设置 Node.js 环境
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/* # 使用最新的 LTS Node.js 版本
+
+      - run: npx changelogithub # 运行 changelogithub，生成 GitHub Release
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}} # 使用 GitHub Token 进行认证
